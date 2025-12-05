@@ -49,6 +49,8 @@ ORDER BY
     salary_year_avg DESC
 LIMIT 10
 ```
+### Insert Visual Here ###
+
 Here are some of findings for top data analyst roles in 2023:
 - **Large Salary Range:** The top 10 roles have salaries that range from $184,000 to $650,000 which presents a vast salary range in the field.
 - **Diverse Employers:** Numerious companies such as Mantys, Meta, AT&T, and others, shows a broad range of intrest for data anlayst roles.
@@ -85,14 +87,45 @@ INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
 ORDER BY
     salary_year_avg DESC
 ```
+### Insert Visual Here ###
+
 Here are some findings for top paying skills:
 
 - **Skill Frequency:** There are many different skills listed for top paying jobs. The most in-demand are SQL and Python
-- **Skill Groups** 
+- **Skill Groups** It is not uncommon to see top paying jobs have multiple different skills listed
 - ** 
 
 ### 3. What are the Most In-Demand Skills for Data Analytics?
+The query below reflects how to filter data analyst jobs by grouping skills and then counting the amount of times a skill was listed.
 
+```sql
+SELECT
+    skills,
+    COUNT(skills_job_dim.job_id) AS demand_count
+FROM job_postings_fact
+INNER JOIN skills_job_dim ON job_postings_fact.job_id = skills_job_dim.job_id
+INNER JOIN skills_dim ON skills_job_dim.skill_id = skills_dim.skill_id
+WHERE
+    job_title_short = 'Data Analyst'
+GROUP BY
+    skills
+ORDER BY
+    demand_count DESC
+LIMIT 5
+```
+### Insert Visual Here ###
+
+Here are some of the findings from this
+
+- **Top Skills:** SQL is highest in demand followed by Excel
+- **Complementary Skills:** The list includes common skills that complement each other such as SQL for managiing databases and then using Power BI for visualzation.
+
+### 4. What are the top skills based on salary for data analytics?
+
+
+
+### 5. What are the most optimal skills to learn?
+#### a. Optimal: High Demand AND High Paying
 
 
 
